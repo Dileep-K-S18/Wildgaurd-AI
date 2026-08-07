@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Monitoring</title>
+  <style>
+    body { text-align: center; font-family: Arial; background: #f1f8e9; }
+    h2 { color: #33691e; }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #558b2f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #33691e; }
+    img { width: 600px; height: auto; margin-top: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h2>🎧 Live Forest Sound Monitoring</h2>
+  <button onclick="startMonitoring()">Start Monitoring</button>
+  <button onclick="stopMonitoring()">Stop Monitoring</button>
+  <button onclick="downloadCSV()">Download CSV</button>
+
+  <div>
+    <h3>📈 Live Audio Signal</h3>
+    <img id="waveform" src="" alt="Waveform will appear here...">
+  </div>
+
+  <script>
+    let intervalId = null;
+
+    function updateWaveform() {
+      fetch('/plot_waveform')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("waveform").src = data.image;
+        });
+    }
+
+    function startMonitoring() {
+      fetch('/start_monitor2', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          alert("Monitoring started!");
+          intervalId = setInterval(updateWaveform, 2000);
+        });
+    }
+
+    function stopMonitoring() {
+      fetch('/stop_monitor2', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          alert("Monitoring stopped!");
+          clearInterval(intervalId);
+        });
+    }
+
+    function downloadCSV() {
+      window.location.href = '/download_csv2';
+    }
+  </script>
+</body>
+</html>

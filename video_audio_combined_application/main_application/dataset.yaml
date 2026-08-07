@@ -1,0 +1,8 @@
+path: C:/Users/shiva/Downloads/wildlife Project/video_audio_combined_application/main_application/dataset
+train: images/train
+val: images/val
+
+names:
+  0: human
+  1: vehicle
+  2: animal

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ForestGuard - Live Audio Monitoring</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-50 to-teal-100 min-h-screen">
+
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white py-10 shadow-xl">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold flex items-center justify-center gap-4">
+        <i class="fas fa-headphones-alt"></i>
+        Live Forest Sound Monitoring
+      </h2>
+      <p class="mt-3 text-emerald-100 text-lg">AI-powered detection of chainsaws, gunshots & human activity</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-4xl mx-auto px-6 py-12">
+
+    <!-- Control Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center gap-8 mb-12">
+      <button onclick="startMonitoring()"
+              class="flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold text-xl rounded-xl shadow-2xl transform transition hover:scale-105">
+        <i class="fas fa-play-circle text-2xl"></i>
+        Start Monitoring
+      </button>
+
+      <button onclick="stopMonitoring()"
+              class="flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold text-xl rounded-xl shadow-2xl transform transition hover:scale-105">
+        <i class="fas fa-stop-circle text-2xl"></i>
+        Stop Monitoring
+      </button>
+
+      <button onclick="downloadCSV()"
+              class="flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-xl rounded-xl shadow-2xl transform transition hover:scale-105">
+        <i class="fas fa-download text-2xl"></i>
+        Download CSV
+      </button>
+    </div>
+
+    <!-- Waveform Section -->
+    <div class="bg-white rounded-3xl shadow-2xl p-10 border-4 border-emerald-100">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center gap-3">
+        <i class="fas fa-wave-square text-emerald-600"></i>
+        Live Audio Signal
+      </h3>
+      <div class="flex justify-center">
+        <img id="waveform" src="" alt="Waveform will appear here..." 
+             class="max-w-full h-auto rounded-xl shadow-lg border-4 border-emerald-200">
+      </div>
+      <p class="text-center text-gray-600 mt-6 text-lg font-medium">
+        Waveform updates every 2 seconds • Real-time forest sound visualization
+      </p>
+    </div>
+
+    <!-- Info Card -->
+    <div class="mt-12 bg-amber-50 border-2 border-amber-300 rounded-2xl p-8 shadow-lg">
+      <div class="flex items-start gap-5">
+        <i class="fas fa-bell text-4xl text-amber-600"></i>
+        <div>
+          <p class="font-bold text-amber-900 text-xl">Instant Alert System Active</p>
+          <p class="text-amber-800 mt-2 leading-relaxed">
+            Detected sounds (chainsaw, gunshot, vehicle, human voice) trigger:
+            <br>• SMS & WhatsApp alerts to forest officers
+            <br>• GPS location + timestamp logging
+            <br>• Auto-generated incident reports
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-emerald-900 text-white py-8 mt-16">
+    <div class="text-center">
+      <p class="text-2xl font-bold">ForestGuard Audio Intelligence</p>
+      <p class="text-emerald-200 mt-2">Protecting India's Forests 24/7 with AI-Powered Listening</p>
+    </div>
+  </footer>
+
+  <!-- Your Original Script - 100% Untouched -->
+  <script>
+    let intervalId = null;
+    function updateWaveform() {
+      fetch('/plot_waveform')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("waveform").src = data.image;
+        });
+    }
+    function startMonitoring() {
+      fetch('/start_monitor2', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          alert("Monitoring started!");
+          intervalId = setInterval(updateWaveform, 2000);
+        });
+    }
+    function stopMonitoring() {
+      fetch('/stop_monitor2', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          alert("Monitoring stopped!");
+          clearInterval(intervalId);
+        });
+    }
+    function downloadCSV() {
+      window.location.href = '/download_csv2';
+    }
+  </script>
+
+</body>
+</html>

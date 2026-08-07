@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ForestGuard - Real-time Forest Monitoring System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen">
+
+  <!-- Hero Section -->
+  <header class="bg-cover bg-center py-20" style="background-image: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2070&auto=format&fit=crop')">
+    <div class="bg-black bg-opacity-50 py-20">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+          ForestGuard
+        </h1>
+        <p class="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto">
+          AI Based Real-time Wildlife Surveillance and protection System using Video & Audio Analytics
+        </p>
+        <p class="text-lg text-green-200 mt-4">
+          Detects chainsaws, gunshots, human intrusion, vehicles & wild animals using YOLO + Deep Learning
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Action Buttons -->
+  <section class="py-16 bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-10">Launch Monitoring Dashboard</h2>
+      <div class="flex flex-col md:flex-row justify-center gap-8">
+        <a href="{{ url_for('monitor_page') }}" class="group">
+          <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-6 px-12 rounded-xl shadow-xl transform transition hover:scale-105 text-xl flex items-center gap-4">
+            <i class="fas fa-video text-2xl"></i>
+            Live Video Monitor
+          </button>
+        </a>
+        <a href="{{ url_for('home2') }}" class="group">
+          <button class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-6 px-12 rounded-xl shadow-xl transform transition hover:scale-105 text-xl flex items-center gap-4">
+            <i class="fas fa-microphone-alt text-2xl"></i>
+            Live Audio Monitor
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Deforestation Crisis: Facts & Figures</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- World Stats -->
+        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+          <i class="fas fa-globe-asia text-5xl text-red-500 mb-6"></i>
+          <h3 class="text-2xl font-bold text-gray-800">Global Deforestation</h3>
+          <ul class="mt-4 text-left text-gray-700 space-y-3">
+            <li><strong>18.7 million acres</strong> lost annually (FAO 2020)</li>
+            <li><strong>420 million hectares</strong> destroyed since 1990</li>
+            <li>Forests absorb <strong>2.6 billion tonnes</strong> of CO₂ yearly</li>
+            <li>Tropical forests disappearing at <strong>10 football fields per minute</strong></li>
+          </ul>
+        </div>
+
+        <!-- India Stats -->
+        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition border-2 border-emerald-500">
+          <i class="fas fa-tree text-5xl text-emerald-600 mb-6"></i>
+          <h3 class="text-2xl font-bold text-gray-800">India's Forests</h3>
+          <ul class="mt-4 text-left text-gray-700 space-y-3">
+            <li>Forest cover: <strong>24.62%</strong> of land (ISFR 2023)</li>
+            <li>Lost <strong>1.88 lakh hectares</strong> in last 5 years</li>
+            <li><strong>668 districts</strong> affected by deforestation</li>
+            <li>Illegal logging & mining major threats in Northeast & Western Ghats</li>
+          </ul>
+        </div>
+
+        <!-- Impact -->
+        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+          <i class="fas fa-exclamation-triangle text-5xl text-orange-500 mb-6"></i>
+          <h3 class="text-2xl font-bold text-gray-800">Consequences</h3>
+          <ul class="mt-4 text-left text-gray-700 space-y-3">
+            <li>Loss of <strong>70%</strong> wildlife habitat</li>
+            <li>Increased human-wildlife conflict</li>
+            <li><strong>15 billion trees</strong> cut yearly worldwide</li>
+            <li>Contributes <strong>12-15%</strong> of global GHG emissions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-20 bg-emerald-900 text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16">How ForestGuard Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="text-center">
+          <div class="bg-white text-emerald-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+            <i class="fas fa-ear"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Audio Detection</h3>
+          <p class="mt-2">Real-time detection of chainsaw, gunshot, vehicle engine sounds</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white text-emerald-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+            <i class="fas fa-camera"></i>
+          </div>
+          <h3 class="text-xl font-semibold">YOLO Vision</h3>
+          <p class="mt-2">Detects humans, vehicles, elephants, tigers, leopards, etc.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white text-emerald-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Instant Alerts</h3>
+          <p class="mt-2">SMS, Email & App notifications to forest officials</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white text-emerald-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="text-xl font-semibold">24/7 Protection</h3>
+          <p class="mt-2">AI never sleeps – continuous monitoring in remote areas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-10 text-center">
+    <p class="text-lg">© 2026 ForestGuard | Protecting India's Green Lungs with AI</p>
+    <p class="mt-2 text-gray-400">Developed for Sustainable Forestry & Wildlife Conservation</p>
+  </footer>
+
+</body>
+</html>

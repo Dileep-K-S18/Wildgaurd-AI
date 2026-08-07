@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Detection Result</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align:center; padding:20px; }
+    img { max-width:100%; height:auto; border:1px solid #ccc; }
+    .det { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h2>Detection Result</h2>
+  {% if detected_any %}
+    <p>Detections:</p>
+    <ul>
+      {% for d in detections %}
+        <li>{{ d.label }} — confidence {{ d.confidence | round(3) }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No humans/vehicles/animals found (or below confidence threshold).</p>
+  {% endif %}
+  <div>
+    <img src="{{ url_for('static', filename='/output.png' ) }}" alt="result">
+  </div>
+  <p><a href="{{ url_for('upload_image') }}">Try another image</a> | <a href="{{ url_for('home') }}">Home</a></p>
+</body>
+</html>

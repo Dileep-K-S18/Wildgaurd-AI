@@ -1,0 +1,9 @@
+train: wildlife_yolo_dataset/final_data/train/images
+val: wildlife_yolo_dataset/final_data/valid/images
+test: wildlife_yolo_dataset/final_data/test/images
+
+names:
+  0: buffalo
+  1: elephant
+  2: rhino
+  3: zebra

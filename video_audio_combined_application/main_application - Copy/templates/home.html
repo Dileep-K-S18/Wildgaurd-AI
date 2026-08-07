@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Home - Monitor App</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align:center; padding:40px; }
+    .btn { padding: 16px 28px; margin: 12px; font-size:18px; cursor:pointer; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <h1>Monitoring Dashboard</h1>
+  <p>Choose an action:</p>
+  <a href="{{ url_for('monitor_page') }}"><button class="btn">Live Monitor</button></a>
+  <a href="{{ url_for('home2') }}"><button class="btn">Live Audio Monitor</button></a>
+</body>
+</html>
