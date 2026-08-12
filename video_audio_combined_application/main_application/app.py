@@ -44,14 +44,13 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
 
-
 # Optional: If email sender module exists in project root
 try:
     from email_sender import alert_sender
 except ImportError:
     alert_sender = None
 
-# ====================== INITIAL SETUP ======================
+# ====================== INITIAL SETUP ======================s
 
 # Load Visual Models (YOLO)
 MODEL_PATH = "yolov8n.pt"
