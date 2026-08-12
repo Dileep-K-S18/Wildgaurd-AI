@@ -1,0 +1,25 @@
+*.wav
+*.pt
+*.pt.2
+
+__pycache__/
+*.pyc
+
+runs/
+wildlife_yolo_dataset/
+
+# Database & Logs
+*.db
+ddbb.db
+*.csv
+
+# Output Folders
+wildlife_runs/
+wildlife_yolo_results/
+
+# Model Files (optional: ignore if they are very large)
+*.pkl
+*.joblib
+
+# Environment / Secret Files
+.env

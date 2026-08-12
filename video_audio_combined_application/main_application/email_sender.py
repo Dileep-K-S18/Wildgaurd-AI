@@ -4,9 +4,16 @@ from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-SENDER_EMAIL = "thefinisherm@gmail.com"
-APP_PASSWORD = "eopifxllamiyutdc"
-RECEIVER_EMAIL = "goat82279@gmail.com"
+import os                       # Standard Python library to read system variables
+from dotenv import load_dotenv  # Imports the tool you just installed
+
+load_dotenv()                   # 👈 THIS LINE opens your .env file and loads the variables!
+
+# Now you fetch the values using os.getenv("VARIABLE_NAME")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+APP_PASSWORD = os.getenv("APP_PASSWORD")
+RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
+
 
 def alert_sender(message_body):
     try:
