@@ -36,6 +36,15 @@ import time
 LAST_EMAIL_TIME = 0
 EMAIL_COOLDOWN = 60  # Minimum time (in seconds) between sent emails
 
+import os
+from flask import Flask
+from dotenv import load_dotenv
+
+load_dotenv()
+app = Flask(__name__)
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
+
+
 # Optional: If email sender module exists in project root
 try:
     from email_sender import alert_sender
@@ -43,8 +52,6 @@ except ImportError:
     alert_sender = None
 
 # ====================== INITIAL SETUP ======================
-app = Flask(__name__)
-app.secret_key = "replace-with-a-secret-key-123"
 
 # Load Visual Models (YOLO)
 MODEL_PATH = "yolov8n.pt"
@@ -537,8 +544,5 @@ def upload_image():
 
     return render_template("upload.html")
 
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-
-
